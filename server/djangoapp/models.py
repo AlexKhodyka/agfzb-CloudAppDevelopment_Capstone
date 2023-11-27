@@ -75,12 +75,12 @@ class DealerReview:
         self.car_model = car_model
         self.car_year = car_year
         self.dealership = dealership
-        self.id = id  
-        self.name = name  
-        self.purchase = purchase  
+        self.id = id  # The id of the review
+        self.name = name  # Name of the reviewer
+        self.purchase = purchase  # Did the reviewer purchase the car? bool
         self.purchase_date = purchase_date
-        self.review = review  
-        self.sentiment = sentiment  
+        self.review = review  # The actual review text
+        self.sentiment = sentiment  # Watson NLU sentiment analysis of review
 
     def __str__(self):
         return "Reviewer: " + self.name + " Review: " + self.review
