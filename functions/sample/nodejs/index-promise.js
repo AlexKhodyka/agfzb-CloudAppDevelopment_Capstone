@@ -11,18 +11,14 @@ function main(params) {
         plugins: { iamauth: { iamApiKey: params.IAM_API_KEY } }
     });
 
-    let dbListPromise = getDbs(cloudant);
-    return dbListPromise;
+    let dbList = getDbs(cloudant);
+    return { dbs: dbList };
 }
 
 function getDbs(cloudant) {
-    return new Promise((resolve, reject) => {
-        cloudant.db.list()
-            .then(body => {
-                resolve({ dbs: body });
-            })
-            .catch(err => {
-                reject({ err: err });
-            });
-    });
+    cloudant.db.list().then((body) => {
+        body.forEach((db) => {
+            dbList.push(db);
+        });
+    }).catch((err) => { console.log(err); });
 }
